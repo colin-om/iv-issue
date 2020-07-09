@@ -4,19 +4,22 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { IdentityProvider } from '../providers/identity/identity';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+  constructor(private platform: Platform, private statusBar: StatusBar, private splashScreen: SplashScreen, private identity: IdentityProvider) {
+    this.initializeApp();
+  }
+
+  private async initializeApp() {
+    await this.identity.ready();
+    await this.platform.ready();
+    this.splashScreen.hide();
+    this.statusBar.styleDefault();
   }
 }
 

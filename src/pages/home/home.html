@@ -1,14 +1,20 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Identity Vault Issue
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <h1 *ngIf="hasSession">
+    Remaining Attempts: {{ remainingAttempts }}
+  </h1>
+
+  <button ion-button (click)="loginClicked()" *ngIf="!hasSession">
+    Login
+  </button>
+  <button ion-button (click)="unlockClicked()" *ngIf="hasSession">
+    Unlock
+  </button>
 </ion-content>

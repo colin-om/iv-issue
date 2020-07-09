@@ -1,5 +1,7 @@
 {
   "name": "iv-issue",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
